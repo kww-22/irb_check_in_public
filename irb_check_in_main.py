@@ -3,7 +3,6 @@ import pandas as pd
 os.chdir(os.path.dirname(__file__))
 post_to_slack = pd.read_csv('zzz_post_to_slack.txt',header=None)[0][0]
 post_to_traq = pd.read_csv('zzz_post_to_traq.txt',header=None)[0][0]
-# os.chdir(r"C:\Users\kylew\Documents\GitHub\pitching_biomech\irb_check_in")
 from irb_check_in_helper_functions import *
 # ===============================================
 # ===============================================
