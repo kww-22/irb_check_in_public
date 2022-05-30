@@ -17,11 +17,11 @@ digital_ocean_username = os.environ['CLUSTER_USERNAME_DB_BIOMECH']
 digital_ocean_password = os.environ['CLUSTER_PASSWORD_DB_BIOMECH']
 digital_ocean_port = os.environ['CLUSTER_PORT_DB_BIOMECH']
 digital_ocean_database = os.environ['DATABASE_THIRD_PARTY_API_DB']
-WAIVER_FOREVER_API_KEY = os.environ['WAIVER_FOREVER_API_KEY'] # '7f8c054c8a1231b381101820f733febe'
-IRB_TEMPLATE_TITLE = os.environ['IRB_TEMPLATE_TITLE'] # '18+ IRB Study Consent'
-IRB_TEMPLATE_ID = os.environ['IRB_TEMPLATE_ID'] # 'MBxtLSRxBL1623804630'
-HELP_CR_SLACK_ID = os.environ['HELP_CR_SLACK_ID'] # 'CBTQRRZ3K'
-TEST_CHANNEL_SLACK_ID = os.environ['TEST_CHANNEL_SLACK_ID'] # 'C03H2Q4GDD3'
+WAIVER_FOREVER_API_KEY = os.environ['WAIVER_FOREVER_API_KEY']
+IRB_TEMPLATE_TITLE = os.environ['IRB_TEMPLATE_TITLE']
+IRB_TEMPLATE_ID = os.environ['IRB_TEMPLATE_ID']
+HELP_CR_SLACK_ID = os.environ['HELP_CR_SLACK_ID']
+TEST_CHANNEL_SLACK_ID = os.environ['TEST_CHANNEL_SLACK_ID']
 SLACK_BOT_JOHN_WICK_TOKEN = os.getenv("SLACK_BOT_JOHN_WICK_TOKEN")
 # ======================================================
 # ======================================================
@@ -36,17 +36,17 @@ org_dict = {'single_choice_field':0,
 'date_field_participant':3,
 'name_field_employee':4,
 'date_field_employee':5}
-creds_path = r"Y:\departments\research_and_development\sports_science\01_mocap_operations\supporting_files"
-pitching_creds = "mocap-320519-93b6695fe619.json"
-hitting_creds = "v1-hitting-tracking-sheet-1d0bf03d1130.json"
+creds_path = <REDACTED>
+pitching_creds = <REDACTED>
+hitting_creds = <REDACTED>
 DAYS_TO_LOOK_BACK = 30
 date_format = '%Y-%m-%d'
 google_sheet_cols_pitching = ['Date', 'Athlete', 'Traq ID', 'Age', 'cat']
 google_sheet_cols_hitting = ['Date', 'Name', 'Traq ID', 'Age', 'cat']
-AT_WASS = '<@U01QZ1NL4K0>'
-AT_TREY = '<@U02CPTUAX1T>'
-AT_ZACK = '<@U02DJ9YJKFC>'
-AT_RHODESY = '<@UJY12DQBD>'
+AT_WASS = <REDACTED>
+AT_TREY = <REDACTED>
+AT_ZACK = <REDACTED>
+AT_RHODESY = <REDACTED>
 # ======================================================
 # ======================================================
 # helper functions
@@ -59,7 +59,7 @@ def calculate_age(born, date_format=date_format):
         return np.nan
 
 def link_traq_profile(names_and_emails, reference_df):
-    base_traq_link = "https://traq.drivelinebaseball.com/athletes/view/"
+    base_traq_link = <REDACTED>
     my_list, traq_ids = list(), list()
     for key, val in names_and_emails.items():
         traq_id = reference_df[reference_df['Athlete'] == key]['Traq ID'].iloc[0].lstrip('0')
@@ -112,7 +112,7 @@ def get_athletes_who_have_assessed_recently(creds_path, pitching_creds, hitting_
    scope = ["https://spreadsheets.google.com/feeds",'https://www.googleapis.com/auth/spreadsheets',"https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
    creds = ServiceAccountCredentials.from_json_keyfile_name(os.path.join(creds_path, hitting_creds), scope)
    client = gspread.authorize(creds)
-   sheet = client.open('v1 Hitting Master Athlete Info Sheet').get_worksheet_by_id(0)
+   sheet = client.open(<REDACTED>).get_worksheet_by_id(0)
    df = get_as_dataframe(sheet, evaluate_formulas=True, dtype = 'str').dropna(axis=0, how='all', subset=['Date', 'Swing_01']).dropna(axis=1, how='all').astype('str')
    df['Date'] = pd.to_datetime(df['Date'])
    df['cat'] = 'hitter'
@@ -127,7 +127,7 @@ def get_athletes_who_have_assessed_recently(creds_path, pitching_creds, hitting_
    scope = ["https://spreadsheets.google.com/feeds",'https://www.googleapis.com/auth/spreadsheets',"https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
    creds = ServiceAccountCredentials.from_json_keyfile_name(os.path.join(creds_path, pitching_creds), scope)
    client = gspread.authorize(creds)
-   sheet = client.open('V6 Master Athlete Info Sheet').get_worksheet_by_id(0)
+   sheet = client.open(<REDACTED>).get_worksheet_by_id(0)
    df = get_as_dataframe(sheet, evaluate_formulas=True, dtype = 'str').dropna(axis=0, how='all', subset=['Date', '_001']).dropna(axis=1, how='all').astype('str')
    df['Date'] = pd.to_datetime(df['Date'])
    df['Age'] = df['DOB'].apply(calculate_age)
